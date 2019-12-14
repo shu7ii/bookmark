@@ -1,0 +1,31 @@
+{
+  "name": "bookmark",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rm -rf ./dist/",
+    "dev": "npm run clean && parcel src/html/*.html src/html/**/*.html --no-source-maps",
+    "build": "npm run clean && parcel build src/html/*.html src/html/**/*.html --no-source-maps"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gorimori/bookmark.git"
+  },
+  "keywords": [],
+  "author": "gorimori",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gorimori/bookmark/issues"
+  },
+  "homepage": "https://github.com/gorimori/bookmark#readme",
+  "devDependencies": {
+    "@types/node": "^12.12.17",
+    "parcel-bundler": "^1.12.4",
+    "pug": "^2.0.4",
+    "typescript": "^3.7.3"
+  },
+  "dependencies": {
+    "localforage": "^1.7.3"
+  }
+}
