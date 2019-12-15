@@ -1,3 +1,8 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+import { App } from './component';
+
 async function init() {
   const { init, commit, clear } = await import('./data');
   clear();
@@ -6,8 +11,11 @@ async function init() {
 
 async function main() {
   if (process.env.NODE_ENV !== 'production') {
-    init();
+    await init();
   }
+
+  const root = document.querySelector('#root');
+  ReactDOM.render(<App />, root);
 }
 
 main();
