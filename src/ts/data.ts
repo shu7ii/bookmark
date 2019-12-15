@@ -5,7 +5,7 @@ const DB_KEY = 'main';
 
 type Bookmark = string;
 
-type Store = Bookmark[];
+export type Store = Bookmark[];
 
 export const init = (): Store => [];
 

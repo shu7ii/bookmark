@@ -1,6 +1,12 @@
 import React from 'react';
+import { Store } from './data';
 
-const Input: React.FC = () => {
+type Prop = {
+  store: Store;
+  setStore: (store: Store) => void;
+};
+
+const Input: React.FC<Prop> = ({ store, setStore }) => {
   const [value, setValue] = React.useState('');
   const updateValue = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value),
@@ -10,12 +16,8 @@ const Input: React.FC = () => {
     if (value === '') {
       return;
     }
-    const { getStore, save, commit } = await import(
-      /* webpackChunkName: 'data' */ './data'
-    );
-    const store = await getStore();
-    await commit(save(store)(value));
     setValue('');
+    setStore([...store, value]);
   }, [value]);
 
   return (
@@ -34,10 +36,29 @@ const Input: React.FC = () => {
   );
 };
 
-export const App: React.FC = () => {
+const List: React.FC<Prop> = ({ store }) => {
+  return (
+    <ul>
+      {store.map(entry => (
+        <li>{entry}</li>
+      ))}
+    </ul>
+  );
+};
+
+export const App = () => {
+  const [store, setStore] = React.useState<Store>([]);
+  const setStore_ = React.useCallback(
+    (store: Store) => {
+      setStore(store);
+    },
+    [store]
+  );
+
   return (
     <React.Fragment>
-      <Input />
+      <Input store={store} setStore={setStore_} />
+      <List store={store} setStore={setStore_} />
     </React.Fragment>
   );
 };
