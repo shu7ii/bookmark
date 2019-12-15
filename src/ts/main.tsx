@@ -1,5 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'preact/compat';
+import ReactDOM from 'preact/compat';
 
 import { App } from './component';
 
@@ -16,7 +16,7 @@ async function main() {
     await init();
   }
 
-  const root = document.querySelector('#root');
+  const root = document.querySelector('#root')!;
   ReactDOM.render(<App />, root);
 }
 

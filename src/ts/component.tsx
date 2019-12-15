@@ -1,9 +1,10 @@
-import React from 'react';
+import React from 'preact/compat';
 
 const Input: React.FC = () => {
   const [value, setValue] = React.useState('');
   const updateValue = React.useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value),
+    (e: React.JSX.TargetedEvent<HTMLInputElement>) =>
+      setValue((e.target as HTMLInputElement).value),
     []
   );
   const save = React.useCallback(async () => {
