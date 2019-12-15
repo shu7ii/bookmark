@@ -10,7 +10,9 @@ const Input: React.FC = () => {
     if (value === '') {
       return;
     }
-    const { getStore, save, commit } = await import('./data');
+    const { getStore, save, commit } = await import(
+      /* webpackChunkName: 'data' */ './data'
+    );
     const store = await getStore();
     await commit(save(store)(value));
     setValue('');

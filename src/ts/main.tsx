@@ -4,7 +4,9 @@ import ReactDOM from 'react-dom';
 import { App } from './component';
 
 async function init() {
-  const { init, commit, clear } = await import('./data');
+  const { init, commit, clear } = await import(
+    /* webpackChunkName: 'data' */ './data'
+  );
   clear();
   commit(init());
 }
